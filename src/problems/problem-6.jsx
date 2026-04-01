@@ -106,8 +106,45 @@ function Problem6() {
   // 5. Otherwise, update slotIds using setSlotIds so that:
   //    - If the piece was off-grid, put it into that slot (and optionally clear any piece that was there).
   //    - If the piece was already on-grid, swap it with whatever is in the target slot.
-  const handleDropOnBoard = (e) => {};
+  const handleDropOnBoard = (e) => {
+    e.preventDefault();
+    const pieceId = Number(e.dataTransfer.getData("text/plain"));
+    const boardRect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - boardRect.left;
+    const y = e.clientY - boardRect.top;
 
+    let nearestSlotIndex = -1;
+    let nearestDistance = Infinity;
+    SLOT_CENTERS.forEach((center, index) => {
+      const dx = x - center.left;
+      const dy = y - center.top;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestSlotIndex = index;
+      }
+    });
+
+    if (nearestDistance > MAGNET_RADIUS) {
+      return;
+    }
+
+    setSlotIds((prev) => {
+      const next = [...prev];
+      const fromIndex = next.indexOf(pieceId);
+      const targetPieceId = next[nearestSlotIndex];
+
+      if (fromIndex === -1) {
+        next[nearestSlotIndex] = pieceId;
+      } else {
+        next[fromIndex] = targetPieceId;
+        next[nearestSlotIndex] = pieceId;
+      }
+
+      return next;
+    });
+  };
   return (
     <section className="problem-view p-6">
       <h2 className="text-xl font-semibold mb-2">Problem 6: Snap to grid</h2>

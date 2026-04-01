@@ -15,7 +15,7 @@ function Problem1() {
   const pieceIds = [0, 1, 2, 3];
   const pieces = pieceIds.map((id) => ({
     id: id,
-    label: 'Piece ${id + 1}',
+    label: `Piece ${id + 1}`,
     color: COLORS[id],
   }));
 

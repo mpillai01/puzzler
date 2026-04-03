@@ -27,8 +27,8 @@ function PuzzlePiece({ piece }) {
 function Problem2() {
   // TODO: Build `pieces` array — same as Problem 1: [0,1,2,3].map((id) => ({ id, label: `${id + 1}`, color: COLORS[id] })).
   const pieces = [0, 1, 2, 3].map((id) => ({
-    id: id,
-    label: `${id + 1}`,
+    id,
+    label: id + 1,
     color: COLORS[id],
   }));
 

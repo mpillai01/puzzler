@@ -46,7 +46,7 @@ function Problem4() {
 
   // TODO: Derive piecesToShow: order.map((id) => PIECES_DATA.find((p) => p.id === id)).
   const piecesToShow = order.map((id) =>
-    PIECES_DATA.find((p) => p.id == id)
+    PIECES_DATA.find((piece) => piece.id == id)
   );
 
   return (

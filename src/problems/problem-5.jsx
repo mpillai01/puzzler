@@ -49,7 +49,9 @@ function Problem5() {
     const pieceId = Number(e.dataTransfer.getData("text/plain"));
     const fromIndex = slotIds.indexOf(pieceId);
     const next = [...slotIds];
-    [next[fromIndex], next[toIndex]] = [next[toIndex], next[fromIndex]];
+    const temp = next[fromIndex];
+    next[fromIndex] = next[toIndex];
+    next[toIndex] = temp;
     setSlotIds(next);
   };
 

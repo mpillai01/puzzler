@@ -14,8 +14,8 @@ const COLORS = ["#f97316", "#22c55e", "#3b82f6", "#eab308"]; // orange, green, b
 function Problem1() {
   const pieceIds = [0, 1, 2, 3];
   const pieces = pieceIds.map((id) => ({
-    id: id,
-    label: `Piece ${id + 1}`,
+    id,
+    label: "Piece " + (id + 1),
     color: COLORS[id],
   }));
 
